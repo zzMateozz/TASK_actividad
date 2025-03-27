@@ -31,7 +31,9 @@ class _TaskListPageState extends State<TaskListPage> {
           }
 
           if (controller.tasks.isEmpty) {
-            return Center(child: Text('No hay tareas'));
+            return Center(
+              child: Text('No hay tareas'),
+            );
           }
 
           return ListView.builder(
@@ -40,30 +42,20 @@ class _TaskListPageState extends State<TaskListPage> {
               final task = controller.tasks[index];
               return TaskItemWidget(
                 task: task,
-                onDelete: () {
-                  controller.removeTask(task.id!);
-                  setState(() {}); // Recargar la lista después de eliminar
-                },
-                onStatusChange: (newStatus) {
-                  controller.updateTaskStatus(task, newStatus);
-                  setState(() {}); // Recargar la lista después del cambio de estado
-                },
+                onDelete: () => controller.removeTask(task.id!),
+                onStatusChange: (newStatus) => 
+                  controller.updateTaskStatus(task, newStatus),
               );
             },
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final result = await Navigator.push(
+        onPressed: () {
+          Navigator.push(
             context, 
-            MaterialPageRoute(builder: (context) => TaskCreatePage()),
+            MaterialPageRoute(builder: (context) => TaskCreatePage())
           );
-
-          if (result == true) {
-            Provider.of<TaskController>(context, listen: false).loadTasks();
-            setState(() {}); // Forzar actualización
-          }
         },
         child: Icon(Icons.add),
       ),
