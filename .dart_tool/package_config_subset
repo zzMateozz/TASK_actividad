@@ -31,9 +31,9 @@ ffi
 file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/ffi-2.1.4/
 file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/ffi-2.1.4/lib/
 flutter_lints
-2.19
-file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-2.0.3/
-file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-2.0.3/lib/
+3.5
+file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-5.0.0/
+file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-5.0.0/lib/
 get
 2.15
 file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/get-4.7.2/
@@ -59,9 +59,9 @@ leak_tracker_testing
 file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/leak_tracker_testing-3.0.1/
 file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/leak_tracker_testing-3.0.1/lib/
 lints
-3.0
-file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.1.1/
-file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.1.1/lib/
+3.6
+file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/lints-5.1.1/
+file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/lints-5.1.1/lib/
 logger
 2.17
 file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/logger-2.5.0/
@@ -167,7 +167,7 @@ xdg_directories
 file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/xdg_directories-1.1.0/
 file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/xdg_directories-1.1.0/lib/
 task
-3.1
+3.7
 file:///C:/Users/ESTUDIANTES/Documents/Task/
 file:///C:/Users/ESTUDIANTES/Documents/Task/lib/
 sky_engine

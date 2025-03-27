@@ -57,9 +57,9 @@
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-2.0.3",
+      "rootUri": "file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-5.0.0",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.5"
     },
     {
       "name": "flutter_test",
@@ -105,9 +105,9 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.1.1",
+      "rootUri": "file:///C:/Users/ESTUDIANTES/AppData/Local/Pub/Cache/hosted/pub.dev/lints-5.1.1",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.6"
     },
     {
       "name": "logger",
@@ -275,10 +275,10 @@
       "name": "task",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "3.7"
     }
   ],
-  "generated": "2025-03-27T14:29:13.983693Z",
+  "generated": "2025-03-27T14:44:30.149900Z",
   "generator": "pub",
   "generatorVersion": "3.7.0",
   "flutterRoot": "file:///C:/Users/ESTUDIANTES/Documents/flutter",

@@ -51,19 +51,21 @@ class _TaskCreatePageState extends State<TaskCreatePage> {
     final taskController = Provider.of<TaskController>(context, listen: false);
     
     final task = TaskModel(
-      id: widget.existingTask?.id,
+      id: widget.existingTask?.id ?? DateTime.now().millisecondsSinceEpoch.toString(),
       nombre: _nombreController.text,
       detalle: _detalleController.text,
       estado: _selectedStatus
     );
 
     if (widget.existingTask == null) {
-      taskController.addTask(task);
+      taskController.addTask(task).then((_) {
+        Navigator.pop(context, true); // Retorna un valor para recargar la lista
+      });
     } else {
-      taskController.updateTask(task);
+      taskController.updateTask(task).then((_) {
+        Navigator.pop(context, true);
+      });
     }
-
-    Navigator.pop(context);
   }
 
   @override
