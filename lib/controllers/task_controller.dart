@@ -1,51 +1,26 @@
-import 'package:flutter/material.dart';
-import '../models/task_model.dart';
-import '../services/task_service.dart';
-import '../utils/constants.dart';
+import 'package:get/get.dart';
+import 'package:task/models/task_model.dart';
 
-class TaskController extends ChangeNotifier {
-  final TaskService _taskService;
-  
-  List<TaskModel> tasks = [];
-  bool isLoading = false;
+class TaskController extends GetxController {
+  var tasks = <TaskModel>[].obs; // Lista reactiva de tareas
 
-  TaskController(this._taskService);
-
-  Future<void> loadTasks() async {
-    isLoading = true;
-    notifyListeners();
-    
-    tasks = await _taskService.getAllTasks();
-    
-    isLoading = false;
-    notifyListeners();
+  // Agregar una nueva tarea
+  void addTask(TaskModel task) {
+    tasks.add(task);
   }
 
-  Future<void> addTask(TaskModel task) async {
-    final newTask = await _taskService.createTask(task);
-    tasks.add(newTask);
-    notifyListeners();
+  // Actualizar una tarea existente
+  void updateTask(int index, TaskModel updatedTask) {
+    // Actualiza la tarea existente en lugar de reemplazarla
+    tasks[index] = updatedTask.copyWith(
+      nombre: updatedTask.nombre,
+      detalle: updatedTask.detalle,
+      estado: updatedTask.estado
+    );
   }
 
-  Future<void> removeTask(String taskId) async {
-    await _taskService.deleteTask(taskId);
-    tasks.removeWhere((task) => task.id == taskId);
-    notifyListeners();
-  }
-
-  Future<void> updateTask(TaskModel task) async {
-    final updatedTask = await _taskService.updateTask(task);
-    if (updatedTask != null) {
-      final index = tasks.indexWhere((t) => t.id == task.id);
-      if (index != -1) {
-        tasks[index] = updatedTask;
-        notifyListeners();
-      }
-    }
-  }
-
-  Future<void> updateTaskStatus(TaskModel task, TaskStatus newStatus) async {
-    final updatedTask = task.copyWith(estado: newStatus);
-    await updateTask(updatedTask);
+  // Eliminar una tarea
+  void deleteTask(TaskModel task) {
+    tasks.remove(task);
   }
 }

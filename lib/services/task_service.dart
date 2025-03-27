@@ -1,63 +1,54 @@
 import 'dart:convert';
-import 'dart:io';
-import 'package:path_provider/path_provider.dart';
+import 'package:http/http.dart' as http;
 import '../models/task_model.dart';
-import '../utils/constants.dart';
 
 class TaskService {
-  Future<File> _getLocalFile() async {
-    final directory = await getApplicationDocumentsDirectory();
-    return File('${directory.path}/tasks.json');
-  }
+  final String baseUrl = "https://api.ejemplo.com/tasks"; // Reemplazar con tu API
 
-  Future<List<TaskModel>> getAllTasks() async {
-    try {
-      final file = await _getLocalFile();
-      if (!await file.exists()) {
-        return [];
-      }
-      final contents = await file.readAsString();
-      final List<dynamic> taskJsonList = json.decode(contents);
-      return taskJsonList.map((json) => TaskModel.fromJson(json)).toList();
-    } catch (e) {
-      return [];
+  // Obtener todas las tareas
+  Future<List<TaskModel>> getTasks() async {
+    final response = await http.get(Uri.parse(baseUrl));
+
+    if (response.statusCode == 200) {
+      List<dynamic> data = json.decode(response.body);
+      return data.map((task) => TaskModel.fromJson(task)).toList();
+    } else {
+      throw Exception("Error al obtener las tareas");
     }
   }
 
-  Future<TaskModel> createTask(TaskModel task) async {
-    final tasks = await getAllTasks();
-    final newTask = TaskModel(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
-      nombre: task.nombre,
-      detalle: task.detalle,
-      estado: task.estado
+  // Crear una nueva tarea
+  Future<TaskModel?> createTask(TaskModel task) async {
+    final response = await http.post(
+      Uri.parse(baseUrl),
+      headers: {"Content-Type": "application/json"},
+      body: json.encode(task.toJson()),
     );
-    tasks.add(newTask);
-    await _saveTasksToFile(tasks);
-    return newTask;
-  }
 
-  Future<TaskModel?> updateTask(TaskModel task) async {
-    final tasks = await getAllTasks();
-    final index = tasks.indexWhere((t) => t.id == task.id);
-    if (index != -1) {
-      tasks[index] = task;
-      await _saveTasksToFile(tasks);
-      return task;
+    if (response.statusCode == 201) {
+      return TaskModel.fromJson(json.decode(response.body));
     }
     return null;
   }
 
-  Future<bool> deleteTask(String taskId) async {
-    final tasks = await getAllTasks();
-    tasks.removeWhere((task) => task.id == taskId);
-    await _saveTasksToFile(tasks);
-    return true;
+  // Actualizar una tarea
+  Future<TaskModel?> updateTask(TaskModel task, Map<String, String> map) async {
+    final response = await http.put(
+      Uri.parse("$baseUrl/${task.id}"),
+      headers: {"Content-Type": "application/json"},
+      body: json.encode(task.toJson()),
+    );
+
+    if (response.statusCode == 200) {
+      return TaskModel.fromJson(json.decode(response.body));
+    }
+    return null;
   }
 
-  Future<void> _saveTasksToFile(List<TaskModel> tasks) async {
-    final file = await _getLocalFile();
-    final jsonString = json.encode(tasks.map((task) => task.toJson()).toList());
-    await file.writeAsString(jsonString);
+  // Eliminar una tarea
+  Future<bool> deleteTask(String id) async {
+    final response = await http.delete(Uri.parse("$baseUrl/$id"));
+
+    return response.statusCode == 200;
   }
 }

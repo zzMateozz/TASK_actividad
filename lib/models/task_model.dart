@@ -29,10 +29,10 @@ class TaskModel {
 
   // Método para clonar y modificar
   TaskModel copyWith({
-    String? id,
-    String? nombre,
-    String? detalle,
-    TaskStatus? estado
+    final String? id,
+    final String? nombre,
+    final String? detalle,
+    final TaskStatus? estado
   }) {
     return TaskModel(
       id: id ?? this.id,
